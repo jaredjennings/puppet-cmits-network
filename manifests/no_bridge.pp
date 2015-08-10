@@ -22,5 +22,6 @@
 # entire network configuration of a host.)
 
 class network::no_bridge {
-    include "network::no_bridge::${::osfamily}"
+    $lower_osfamily = downcase($::osfamily)
+    include "network::no_bridge::${lower_osfamily}"
 }

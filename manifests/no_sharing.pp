@@ -14,5 +14,6 @@
 # % See the License for the specific language governing permissions and
 # % limitations under the License.
 class network::no_sharing {
-    include "${name}::${::osfamily}"
+    $lower_osfamily = downcase($::osfamily)
+    include "${name}::${lower_osfamily}"
 }

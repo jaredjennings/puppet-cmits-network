@@ -16,5 +16,6 @@
 # \subsubsection{Disable AirDrop}
 
 class network::airdrop::no {
-    include "${name}::${::osfamily}"
+    $lower_osfamily = downcase($::osfamily)
+    include "${name}::${lower_osfamily}"
 }

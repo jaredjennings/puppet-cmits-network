@@ -19,5 +19,6 @@
 # of IPsec VPNs.
 
 class network::ike::no {
-    include "network::ike::no::${::osfamily}"
+    $lower_osfamily = downcase($::osfamily)
+    include "network::ike::no::${lower_osfamily}"
 }

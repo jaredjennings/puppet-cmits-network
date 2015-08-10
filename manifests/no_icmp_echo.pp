@@ -18,5 +18,6 @@
 # This is known as ``stealth mode'' on Macs. Oo, stealthy.
 
 class network::no_icmp_echo {
-    include "network::no_icmp_echo::${::osfamily}"
+    $lower_osfamily = downcase($::osfamily)
+    include "network::no_icmp_echo::${lower_osfamily}"
 }
