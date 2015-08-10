@@ -16,9 +16,6 @@
 # \subsubsection{Disable Bluetooth}
 
 class network::bluetooth::no {
-    case $::osfamily {
-        'redhat': { include network::bluetooth::no::redhat }
-        'darwin': { include network::bluetooth::no::darwin }
-        default:  { unimplemented() }
-    }
+    $lower_osfamily = downcase($::osfamily)
+    include "${name}::${lower_osfamily}"
 }

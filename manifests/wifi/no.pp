@@ -16,8 +16,6 @@
 # \subsection{Disable WiFi}
 
 class network::wifi::no {
-    case $::osfamily { 
-        'darwin': { include network::wifi::no::darwin }
-        default:  { unimplemented() }
-    }
+    $lower_osfamily = downcase($::osfamily)
+    include "${name}::${lower_osfamily}"
 }

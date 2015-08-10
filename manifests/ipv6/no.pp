@@ -19,9 +19,6 @@
 # disabling it ``unless needed.''
 
 class network::ipv6::no {
-    case $::osfamily {
-        'redhat': { include network::ipv6::no::redhat }
-        'darwin': { include network::ipv6::no::darwin }
-        default:  { unimplemented() }
-    }
+    $lower_osfamily = downcase($::osfamily)
+    include "${name}::${lower_osfamily}"
 }

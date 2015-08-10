@@ -18,7 +18,7 @@
 class network::ipv4::non_router {
 
     case $::osfamily {
-        'redhat': {
+        'RedHat': {
 # \implements{unixsrg}{GEN005600}%
 # Turn off IPv4 forwarding for non-router Red Hat hosts.
             augeas { "no_ipv4_forwarding":
@@ -26,7 +26,7 @@ class network::ipv4::non_router {
                 changes => "set net.ipv4.ip_forward 0",
             }
         }
-        'darwin': {
+        'Darwin': {
 # \implements{macosxstig}{GEN005600 M6}%
 # \implements{mlionstig}{OSX8-00-01205}%
 # Turn off IPv4 forwarding for non-router Macs.
@@ -35,6 +35,6 @@ class network::ipv4::non_router {
                 changes => "set net.inet.ip.forwarding 0",
             }
         }
-        default:  { unimplemented() }
+        default:  { fail "unimplemented on ${::osfamily}" }
     }
 }

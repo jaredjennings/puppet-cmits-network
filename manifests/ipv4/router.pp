@@ -18,7 +18,7 @@
 class network::ipv4::router {
 
     case $::osfamily {
-        'redhat': {
+        'RedHat': {
 # \implements{unixsrg}{GEN005600}%
 # Turn on IPv4 forwarding for Red Hat hosts designated as routers.
             augeas { "ipv4_forwarding":
@@ -26,7 +26,7 @@ class network::ipv4::router {
                 changes => "set net.ipv4.ip_forward 1",
             }
         }
-        'darwin': {
+        'Darwin': {
 # \implements{macosxstig}{GEN005600 M6}%
 # \implements{mlionstig}{OSX8-00-01205}%
 # Turn on IPv4 forwarding for Macs designated as routers.
@@ -35,6 +35,6 @@ class network::ipv4::router {
                 changes => "set net.inet.ip.forwarding 1",
             }
         }
-        default:  { unimplemented() }
+        default:  { fail "unimplemented on ${::osfamily}" }
     }
 }

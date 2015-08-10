@@ -32,6 +32,6 @@ class network::stig {
     case $::osfamily {
         'RedHat': { include network::stig::redhat }
         'Darwin': { include network::stig::darwin }
-        default:  { unimplemented() }
+        default:  { fail "unimplemented on ${::osfamily}" }
     }
 }

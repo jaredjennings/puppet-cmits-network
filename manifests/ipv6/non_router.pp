@@ -18,7 +18,7 @@
 class network::ipv6::non_router {
 
     case $::osfamily {
-        'redhat': {
+        'RedHat': {
 # \implements{unixsrg}{GEN005590} Remove IPv6 routing protocol daemons from
 # non-routing systems.
             package {
@@ -32,10 +32,10 @@ class network::ipv6::non_router {
                 changes => "set ipv6.conf.all.forwarding 0",
             }
         }
-        'darwin': {
+        'Darwin': {
 # The Mac OS X STIG appears to have no requirements for us to do anything here.
         }
-        default:  { unimplemented() }
+        default:  { fail "unimplemented on ${::osfamily}" }
     }
 }
 
