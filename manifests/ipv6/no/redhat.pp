@@ -16,17 +16,7 @@
 # \paragraph{Turn off IPv6 under RHEL}
 
 class network::ipv6::no::redhat {
-    define ipv6init_no() {
-        augeas { "${name}_turn_off_ipv6":
-            changes => "set IPV6INIT no",
-            context => 
-        "/files/etc/sysconfig/network-scripts/ifcfg-${name}",
-            onlyif => "match \
-        /files/etc/sysconfig/network-scripts/ifcfg-${name} \
-                size == 1",
-        }
-    }
-    ipv6init_no { 
+    network::ipv6::no::redhat::init_no { 
         "eth0":;
         "eth1":;
         "lo":;
