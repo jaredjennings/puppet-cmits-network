@@ -13,11 +13,11 @@
 # % WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # % See the License for the specific language governing permissions and
 # % limitations under the License.
-# \paragraph{Turn off IPv6 under Mac OS X}
 
-class network::ipv6::no::darwin {
-
-# \implements{mlionstig}{OSX8-00-01240}%
-# Turn off IPv6 ``if not being used.''
-    network::ipv6::no::darwin::on_interface { 'Ethernet': }
+define network::ipv6::no::darwin::on_interface() {
+    exec { "turn off IPv6 on ${name}":
+	command => "networksetup -setv6off ${name}",
+	unless => "networksetup -getinfo ${name} | \
+		   grep '^IPv6: Off\$'",
+    }
 }
