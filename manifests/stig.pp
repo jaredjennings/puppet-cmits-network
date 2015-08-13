@@ -22,7 +22,7 @@ class network::stig {
 # \implements{unixsrg}{GEN003760,GEN003770,GEN003780}%
 # Control ownership and permissions of the \verb!services! file.
     file { "/etc/services":
-        owner => root, group => 0, mode => 0644,
+        owner => root, group => 0, mode => '0644',
     }
 # \implements{unixsrg}{GEN003790}%
 # Remove extended ACLs on the \verb!services!  file.

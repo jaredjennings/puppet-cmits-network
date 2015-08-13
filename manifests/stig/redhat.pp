@@ -91,7 +91,7 @@ class network::stig::redhat {
 
 # \implements{rhel5stig}{GEN000000-LNX00480,GEN000000-LNX00500,GEN000000-LNX00520}%
     file { "/etc/sysctl.conf":
-        owner => root, group => 0, mode => 0600,
+        owner => root, group => 0, mode => '0600',
     }
 # \implements{rhel5stig}{GEN000000-LNX00530}%
     no_ext_acl { "/etc/sysctl.conf": }

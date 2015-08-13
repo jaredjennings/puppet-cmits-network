@@ -23,7 +23,7 @@ class network::stig::darwin {
 # generic module than ``network.''
     file { '/etc/sysctl.conf':
         ensure => present,
-        owner => root, group => 0, mode => 0644,
+        owner => root, group => 0, mode => '0644',
     }
 # All of our edits will be to sysctl.conf.
     Augeas {
