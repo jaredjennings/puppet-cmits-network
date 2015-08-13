@@ -19,17 +19,7 @@
 # for a class which disables it.
 
 class network::ipv6 {
-    define ipv6init_yes() {
-        augeas { "${name}_turn_on_ipv6":
-            changes => "set IPV6INIT yes",
-            context => 
-        "/files/etc/sysconfig/network-scripts/ifcfg-${name}",
-            onlyif => "match \
-        /files/etc/sysconfig/network-scripts/ifcfg-${name} \
-                size == 1",
-        }
-    }
-    ipv6init_yes { 
+    network::ipv6::init_yes { 
         "eth0":;
         "eth1":;
         "lo":;
