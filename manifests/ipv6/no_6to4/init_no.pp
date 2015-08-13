@@ -13,22 +13,14 @@
 # % WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # % See the License for the specific language governing permissions and
 # % limitations under the License.
-# \subsubsection{Disable 6to4}
-#
-# \implements{unixsrg}{GEN007780} Disable 6to4.
-#
-# See \verb!/usr/share/doc/initscripts-9.03.17/ipv6-6to4.howto!.
 
-class network::ipv6::no_6to4 {
-    network::ipv6::no_6to4::init_no {
-        "eth0":;
-        "eth1":;
-        "lo":;
-    }
-    augeas {
-        "network_turn_off_6to4":
-            context => "/files/etc/sysconfig/network",
-            changes => "rm IPV6_DEFAULTDEV",
-            onlyif => "get IPV6_DEFAULTDEV == 'tun6to4'";
+define network::ipv6::no_6to4::init_no() {
+    augeas { "${name}_turn_off_6to4":
+	changes => "set IPV6TO4INIT no",
+	context => 
+    "/files/etc/sysconfig/network-scripts/ifcfg-${name}",
+	onlyif => "match \
+    /files/etc/sysconfig/network-scripts/ifcfg-${name} \
+	    size == 1",
     }
 }
